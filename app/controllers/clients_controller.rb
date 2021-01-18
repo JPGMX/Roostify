@@ -49,7 +49,14 @@ class ClientsController < ApplicationController
     end
   end
 
+def calculate_tax
+    @client.calculate_tax(params[:annual_income])
+  end
 
+  def import
+    Client.import(params[:file].path)
+    redirect_to clients_path, notice: 'File Imported'
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
